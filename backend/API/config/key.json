@@ -5,5 +5,13 @@
         "aws_secret_access_key": "Your_Secret_Key",
         "region_name": "Your_Region",
         "bucket_name": "Your_Bucket_Name"
+    },
+
+    "google_oauth" :
+    {
+        "client_id" : "client_id",
+        "client_secret" : "client_secret",
+        "redirect_uri" : "redirect_uri",
+        "scope" : "scope"
     }
 }
