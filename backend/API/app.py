@@ -5,6 +5,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from MultiPage import *
 from CtrlJson import Control_Json
 import requests
+import Encryption
 
 def jobs():
     index_page = IndexPage()
@@ -27,21 +28,18 @@ def add_talmo_him():
 @app.route('/get/talmo-him')
 def get_talmo_him_count():
     index_page = IndexPage()
-    talmo_him_content = f"지환쌤 탈모 진행도 {index_page.index_config.json_data['talmo_jinhang']}%"
+    talmo_him_content = f"지환쌤 탈모 진행도 {index_page.get_talmo_him()}%"
     return talmo_him_content
 
 @app.route('/get/talmo-title')
 def get_talmo_gione_count():
     index_page = IndexPage()
-    title = f"지환쌤 탈모기원 {index_page.index_config.json_data['talmo_gione']}일차"
+    title = f"지환쌤 탈모기원 {index_page.get_talmo_gione()}일차"
     return title
 
-#Login Page============================================================================================================
-#로그인에 필요한 api 구현
-#경로 /login
+#User information============================================================================================================
 @app.route('/get/login_url')
 def login_redirect():
-    #로그인 URL을 생성하는 로직
     login_json_obj = Control_Json("./config/key.json")
     CLIENT_ID = login_json_obj.get_key_data()["google_oauth"]["client_id"]
     REDIRECT_URI = login_json_obj.get_key_data()["google_oauth"]["redirect_uri"]
@@ -51,7 +49,35 @@ def login_redirect():
 
     return login_url
 
-@app.route('/login-callback')
+@app.route('/get/access-token')
+def get_access_token():
+    auth_code = request.args.get('code')
+    login_json_obj = Control_Json("./config/key.json")
+    CLIENT_ID = login_json_obj.get_key_data()["google_oauth"]["client_id"]
+    CLIENT_SECRET = login_json_obj.get_key_data()["google_oauth"]["client_secret"]
+    REDIRECT_URI = login_json_obj.get_key_data()["google_oauth"]["redirect_uri"]
+    ENCRYPTION_KEY = login_json_obj.get_key_data()["encryption_key"]
+
+    token_request = requests.post(
+        'https://oauth2.googleapis.com/token',
+        data={
+            'code': auth_code,
+            'client_id': CLIENT_ID,
+            'client_secret': CLIENT_SECRET,
+            'redirect_uri': REDIRECT_URI,
+            'grant_type': 'authorization_code'
+        }
+    )
+
+    if token_request.status_code != 200:
+        return None
+
+    token_response_data = token_request.json()
+    access_token = token_response_data.get('access_token')
+    
+    return Encryption.encrypt_data(access_token, ENCRYPTION_KEY)
+
+@app.route('/login-callback') #수정
 def callback():
     auth_code = request.args.get('code')
     if not auth_code:
@@ -88,10 +114,10 @@ def callback():
         return jsonify({"error": "Failed to fetch user info"}), userinfo_request.status_code
     
     userinfo_response_data = userinfo_request.json()
+    userinfo_response_data['access_token'] = Encryption.encrypt_data(access_token)
     return jsonify(userinfo_response_data)
 
 #Harvest Hair Page============================================================================================================
-
 #@app.route('')
 #def 
 

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./css/index/main.css">
-    <script type="" src="./config.js" defer></script>
-    <script type="module" src="./js/index/req.js" defer></script>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+    <link rel="stylesheet" href=" {{ url_for('static', filename='css/index/main.css') }}">
+    <script src="{{  url_for('static', filename = 'js/index/jihwan_talking.js') }}" defer></script>
+    <script type="module" src="{{ url_for('static', filename = 'js/index/req.js')}}" defer></script>
     <title>지환쌤 탈모 기원</title>
 </head>
 <body>
@@ -19,12 +20,21 @@
 
     <h1 id="talmo_title"></h1>
 
+    <button class="talmo_button" id="go_mari" >머리카락 수확하기</button>
     <div class="box">
-        <h1 id="talmo_him_do"></h1>    
-        <button id="add_talmo">버튼을 눌러 탈모 진행도를 높여봐요!!!</button>
+        <h1 id="talmo_him_do"></h1>
+        <button id="add_talmo" class="talmo_button">버튼을 눌러 탈모 진행도를 높여봐요!!!</button>
     </div>
 
-    <img id="talmo_bim" src="./images/talmobim.png" alt="">
-    <img id="jihwanT_guitar" src="./images/playing_guitar.gif" alt="">
+    <div id="jihwan_talk_box">
+        <h1 id="jihwanTalk">시발련아</h1>
+        <img id="talk_box" src="{{url_for('static', filename = 'images/index/talk_box.png')}}">
+    </div>
+
+    <img class="jihwanTs" id="Dea_JiHwanT"  src="{{ url_for('static', filename = 'images/index/Dea_JiHwanT.png')}}">
+    <img class="jihwanTs" id="Tukkang" src="{{ url_for('static', filename = 'images/index/jhT_Tukkang.png')}}">
+
+    <img id="talmo_bim" src="{{ url_for('static', filename='images/index/talmobim.png')}}">
+    <img id="jihwanT_guitar" src="{{ url_for('static', filename='images/index/playing_guitar.gif')}}">
 </body>
 </html>

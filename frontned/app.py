@@ -13,10 +13,7 @@ def login_page():
 
 @app.route('/harvest-hair')
 def harvest_hair_page():
-    encryption_key = "알아서 지정"
-    return render_template('harvest_hair.html', encryption_key=encryption_key)
-
-
+    return render_template('harvest_hair.html')
 
 if __name__ == '__main__':
     app.run(port=3400)

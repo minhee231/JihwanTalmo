@@ -1,10 +1,8 @@
-import { serverConfig } from '../../config.js';
-//const { serverConfig } = require('../../config.js');
+import { serverConfig } from '../config.js';
 
 function get_talmo_title() {
 
-    fetch(`${serverConfig.apiUrl}/get/talmo-title`)
-    // fetch('http://localhost:5000/get/talmo-title')
+    fetch(serverConfig.get.talmo_gione_title)
     .then(response => response.text())
 
     .then(text => {
@@ -15,7 +13,7 @@ function get_talmo_title() {
 };
 
 function get_talmo_him() {
-    fetch(`${serverConfig.apiUrl}/get/talmo-him`)
+    fetch(serverConfig.get.talmo_him)
     .then(response => response.text())
 
     .then(text => {
@@ -26,20 +24,31 @@ function get_talmo_him() {
 };
 
 function add_talmo_him() {
-    fetch(`${serverConfig.apiUrl}/add/talmo-him`)
+    fetch(serverConfig.add.talmo_him)
     .then(response => response.text())
 
     .catch(error => console.error('Error:', error));
 };
 
-//document.getElementById('add_talmo').addEventListener('click', add_talmo_him);
+function redirect_login_url() {
+    fetch(serverConfig.get.login_url)
+    .then(response => response.text())
+
+    .then(text => {
+        window.location.href = text;
+    })
+
+    .catch(error => console.error('Error:', error));
+};
+
 document.getElementById('add_talmo').addEventListener('click', function () {
     add_talmo_him()
     get_talmo_him()
 });
 
-//로딩이 완료되면 실행 ======================================================
-document.addEventListener('DOMContentLoaded', function() {
-    get_talmo_title();
-    get_talmo_him();
-});
+document.getElementById('go_mari').addEventListener('click', redirect_login_url)
+
+get_talmo_title();
+get_talmo_him();
+
+

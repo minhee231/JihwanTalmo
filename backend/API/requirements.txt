@@ -1,0 +1,6 @@
+flask
+flask_cors
+pytz
+apscheduler
+boto3
+requests

@@ -13,5 +13,7 @@
         "client_secret" : "client_secret",
         "redirect_uri" : "redirect_uri",
         "scope" : "scope"
-    }
+    },
+
+    "encryption_key" : "16byte"
 }
