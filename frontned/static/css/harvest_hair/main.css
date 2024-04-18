@@ -1,0 +1,109 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+nav {
+    width: 10%;
+    height: 100%;
+    float: left;
+    background-color: #424242;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+section {
+    width: 65%;
+    height: 100%;
+    float: left;
+    background-color: #616161;
+}
+
+aside {
+    width: 25%;
+    height: 100%;
+    float: right;
+    background-color: #616161;
+}
+
+/* .box {
+    background-color: #757575;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+    margin: 12px;
+    border: none;
+} */
+
+.box_button {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    cursor: pointer;
+    border-radius: 10px;
+    width: 150px;
+    margin: 12px;
+    border: none;
+}
+
+.box_button:hover {
+    opacity: 0.8; 
+}
+
+.box_button:active {
+    transform: translateY(4px);
+}
+
+.box_image {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+#backspace_button {
+    margin: 12px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 10px;
+    width: 150px;
+    height: 70px;
+    margin-top: -100px;
+    position: absolute;
+}
+
+#sujip_hair_amount {
+    color: white;
+}
+
+#harvest_button {
+    background-color: #4CAF50;
+    top: 50%;
+    left: 37%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    position: absolute;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#harvest_button:hover {
+    background-color: #45a049;
+}
+
+#harvest_button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}

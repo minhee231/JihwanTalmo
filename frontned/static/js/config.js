@@ -1,7 +1,7 @@
 //const api_url = "https://api.x-coll.com"
-const api_url = "http://localhost:5000"; //개발할 때 사용
 //const web_url = "https://jihwan-talmo.x-coll.com"
-const web_url = "http://localhost:3400"
+const api_url = "http://localhost:5000"; //개발전용
+const web_url = "http://localhost:3400" //개발전용
 
 export const serverConfig = {
     server_url: {
@@ -18,12 +18,15 @@ export const serverConfig = {
         talmo_him: `${api_url}/get/talmo-him`,
 
         login_url : `${api_url}/get/login_url`,
-        access_token: `${api_url}/get/access-token`
-        
+        access_token: `${api_url}/get/access-token`       
     },
 
     login: {
-        request_login_api: `${api_url}/login-callback`
-    }
+        request_login_api: `${api_url}/login-callback` //test 나중에 수정하셈
+    },
+
+    check: {
+        login_check: `${api_url}/login-check`
+    },
 
 }

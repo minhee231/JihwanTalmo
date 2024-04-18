@@ -1,21 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {{ url_for('static', filename='css/harvest_hair/main.css') }}">
+    <link rel="stylesheet" href=" {{ url_for('static', filename='css/harvest_hair/character.css') }}">
+    <link rel="stylesheet" href=" {{ url_for('static', filename='css/harvest_hair/move_hair.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+    <script type="module" src="{{ url_for('static', filename = 'js/harvest_hair/box.js')}}" defer></script>
+    <script type="module" src="{{ url_for('static', filename = 'js/harvest_hair/fly_hair.js')}}" defer></script>
     <script type="module" src="{{ url_for('static', filename = 'js/harvest_hair/req.js')}}" defer></script>
+        <script type="module" src="{{ url_for('static', filename = 'js/harvest_hair/test.js')}}" defer></script>
     <title>지환쌤의 머리를 뽑아봐요</title>
 </head>
 <body>
     <nav>
-        
+        <div id="main_box" class="test">
+        <div class="box_button" id="box1" draggable="false">
+            <img src="{{url_for('static',filename='images/harvest_hair/icon_20.png')}}" alt="" class="box_image" id="image1">
+        </div>
+
+        <div class="box_button" id="box2" draggable="false">
+            <img src="{{url_for('static',filename='images/harvest_hair/icon_20.png')}}" alt="" class="box_image" id="image2">
+        </div>
+
+        <div class="box_button" id="box3" draggable="false">
+            <img src="{{url_for('static',filename='images/harvest_hair/icon_20.png')}}" alt="" class="box_image" id="image3">
+        </div>
+
+        <div class="box_button" id="box4" draggable="false">
+            <img src="{{url_for('static',filename='images/harvest_hair/icon_20.png')}}" alt="" class="box_image" id="image4">
+        </div>
+
+        <div class="box_button" id="box5" draggable="false">
+            <img src="{{url_for('static',filename='images/harvest_hair/icon_20.png')}}" alt="" class="box_image" id="image5">
+        </div>
+        </div>
+
+        <!-- <div id="store_box">
+            <div id="backspace_button"></div>
+            <img src="{{url_for('static',filename='images/harvest_hair/icon_20.png')}}" alt="" class="box_image" id="image5">
+        </div> -->
     </nav>
-    <section>
 
-    </section>
     <aside>
-
+        
     </aside>
+
+    <section>
+        <h1 id="sujip_hair_amount">수집된 머리카락의 수 :</h1>
+        <img id="default_jihwanT" src="{{ url_for('static',filename='images/harvest_hair/default_jihwanT.png')}}" alt="">
+        <img id="jihwan_hair1" class="jihwan_hairs" src="{{ url_for('static',filename='images/harvest_hair/default_jihwan_hair.png')}}" alt="">
+        <img id="jihwan_hair2" class="jihwan_hairs" src="{{ url_for('static',filename='images/harvest_hair/default_jihwan_hair.png')}}" alt="">
+        <img id="jihwan_hair3" class="jihwan_hairs" src="{{ url_for('static',filename='images/harvest_hair/default_jihwan_hair.png')}}" alt="">
+        <img id="jihwan_hair4" class="jihwan_hairs" src="{{ url_for('static',filename='images/harvest_hair/default_jihwan_hair.png')}}" alt="">
+        <img id="jihwan_hair5" class="jihwan_hairs" src="{{ url_for('static',filename='images/harvest_hair/default_jihwan_hair.png')}}" alt="">
+        <button id="harvest_button" class="default_box">버튼을 눌러 머리카락을 수확해보아요</button>
+    </section>
+
 </body>
 </html>

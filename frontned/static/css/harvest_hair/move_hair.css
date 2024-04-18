@@ -1,0 +1,42 @@
+.test {
+    display: none;
+}
+
+.jihwan_hairs {
+    position: absolute;
+    left: 33%;
+    top: 47%;
+    opacity: 0;
+}
+
+.up_hair_type1 {
+    animation: up_hair_type1 0.5s 1 forwards
+}
+
+.up_hair_type2 {
+    animation: up_hair_type2 0.5s 1 forwards
+}
+
+.up_hair_type3 {
+    animation: up_hair_type3 0.5s 1 forwards
+}
+
+/*================================================================================*/
+
+@keyframes up_hair_type1 {
+    0% {transform: translateX(0px) translateY(0px) rotateZ(0deg); opacity: 1;}
+    99% {transform: translateX(-200px) translateY(-400px) rotateZ(240deg); }
+    100% {transform: translateX(-200px) translateY(-400px) rotateZ(240deg);opacity: 0;} 
+}
+
+@keyframes up_hair_type2 {
+    0% {transform: translateX(0px) translateY(0px) rotateZ(0deg); opacity: 1;}
+    99% {transform: translateX(200px) translateY(-400px) rotateZ(-2400deg); opacity: 0;}
+    100% {transform: translateX(200px) translateY(-400px) rotateZ(-240deg); opacity: 0;} 
+}
+
+@keyframes up_hair_type3 {
+    0% {transform: translateX(0px) translateY(0px) rotateZ(0deg); opacity: 1;}
+    99% {transform: translateX(200px) translateY(-400px) rotateZ(-2400deg); opacity: 0;}
+    100% {transform: translateX(200px) translateY(-400px) rotateZ(-240deg); opacity: 0;} 
+}
