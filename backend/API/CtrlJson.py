@@ -18,13 +18,9 @@ class Control_Json:
 
         return data
     
-    def save_json_file(self):
-        with open(self.file_path, 'w', encoding='utf-8') as file:
+    def write_json_file(self):
+        with open(self.file_path, '+w', encoding='utf-8') as file:
             file.write(json.dumps(self.json_data, ensure_ascii=False, indent=4))
-
-    def write_json(self, file_data):
-        #파일경로 그냥 self에서 끌어다 쓰기
-        pass
 
     def get_s3_obj(self):
         data = self.get_key_data()
