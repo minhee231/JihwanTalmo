@@ -77,45 +77,71 @@ def get_access_token():
     
     return Encryption.encrypt_data(access_token, ENCRYPTION_KEY)
 
-@app.route('/login-callback') #수정
-def callback():
-    auth_code = request.args.get('code')
-    if not auth_code:
-        return jsonify({"error": "Authentication code is missing"}), 400
-    
-    login_json_obj = Control_Json("./config/key.json")
-    CLIENT_ID = login_json_obj.get_key_data()["google_oauth"]["client_id"]
-    CLIENT_SECRET = login_json_obj.get_key_data()["google_oauth"]["client_secret"]
-    REDIRECT_URI = login_json_obj.get_key_data()["google_oauth"]["redirect_uri"]
-
-    token_request = requests.post(
-        'https://oauth2.googleapis.com/token',
-        data={
-            'code': auth_code,
-            'client_id': CLIENT_ID,
-            'client_secret': CLIENT_SECRET,
-            'redirect_uri': REDIRECT_URI,
-            'grant_type': 'authorization_code'
-        }
-    )
-    if token_request.status_code != 200:
-        return jsonify({"error": "Failed to obtain access token"}), token_request.status_code
-    
-    token_response_data = token_request.json()
-    access_token = token_response_data.get('access_token')
+@app.route('/get/user-info')
+def login_check():
+    access_token = request.args.get('access_token')
     if not access_token:
-        return jsonify({"error": "Access token is missing"}), 400
+        return jsonify({'error': 'No access token provided'}), 400
 
+    try:
+        login_json_obj = Control_Json("./config/key.json")
+        ENCRYPTION_KEY = login_json_obj.get_key_data()["encryption_key"]
+        
+        access_token = Encryption.decrypt_data(access_token, ENCRYPTION_KEY)
+    except Exception as e:
+
+        return jsonify({'error': 'Failed to decrypt or load encryption key', 'details': str(e)}), 500
+    
     userinfo_request = requests.get(
         'https://www.googleapis.com/oauth2/v2/userinfo',
         headers={'Authorization': f'Bearer {access_token}'}
     )
     if userinfo_request.status_code != 200:
-        return jsonify({"error": "Failed to fetch user info"}), userinfo_request.status_code
-    
+
+        return jsonify({'error': 'Failed to fetch user information', 'status_code': userinfo_request.status_code}), 502
+
     userinfo_response_data = userinfo_request.json()
-    userinfo_response_data['access_token'] = Encryption.encrypt_data(access_token)
-    return jsonify(userinfo_response_data)
+    return jsonify(userinfo_response_data), 200
+
+# @app.route('/login-check') #참고용 코드
+# def login_check():
+#     auth_code = request.args.get('googletoken')
+#     if not auth_code:
+#         return jsonify({"error": "not token"}), 400
+    
+#     login_json_obj = Control_Json("./config/key.json")
+#     CLIENT_ID = login_json_obj.get_key_data()["google_oauth"]["client_id"]
+#     CLIENT_SECRET = login_json_obj.get_key_data()["google_oauth"]["client_secret"]
+#     REDIRECT_URI = login_json_obj.get_key_data()["google_oauth"]["redirect_uri"]
+
+#     token_request = requests.post(
+#         'https://oauth2.googleapis.com/token',
+#         data={
+#             'code': auth_code,
+#             'client_id': CLIENT_ID,
+#             'client_secret': CLIENT_SECRET,
+#             'redirect_uri': REDIRECT_URI,
+#             'grant_type': 'authorization_code'
+#         }
+#     )
+#     if token_request.status_code != 200:
+#         return jsonify({"error": "Failed to obtain access token"}), token_request.status_code
+    
+#     token_response_data = token_request.json()
+#     access_token = token_response_data.get('access_token')
+#     if not access_token:
+#         return jsonify({"error": "Access token is missing"}), 400
+
+#     userinfo_request = requests.get(
+#         'https://www.googleapis.com/oauth2/v2/userinfo',
+#         headers={'Authorization': f'Bearer {access_token}'}
+#     )
+#     if userinfo_request.status_code != 200:
+#         return jsonify({"error": "Failed to fetch user info"}), userinfo_request.status_code
+    
+#     userinfo_response_data = userinfo_request.json()
+#     userinfo_response_data['access_token'] = Encryption.encrypt_data(access_token)
+#     return jsonify(userinfo_response_data)
 
 #Harvest Hair Page============================================================================================================
 #@app.route('')
