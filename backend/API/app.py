@@ -2,10 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pytz import timezone
 from apscheduler.schedulers.background import BackgroundScheduler
-from MultiPage import *
-from CtrlJson import Control_Json
+from backend.API.module.MultiPage import *
+from backend.API.module.CtrlJson import Control_Json
 import requests
-import Encryption
+import backend.API.module.Encryption as Encryption
 
 def jobs():
     index_page = IndexPage()
