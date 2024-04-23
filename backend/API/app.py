@@ -1,17 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from pytz import timezone
-from apscheduler.schedulers.background import BackgroundScheduler
 from backend.API.module.MultiPage import *
 from backend.API.module.CtrlJson import Control_Json
-import requests
 import backend.API.module.Encryption as Encryption
-
-def jobs():
-    index_page = IndexPage()
-    index_page.reset_json_daily()
-
-#==========================================================================================
+import requests
     
 app = Flask(__name__)
 CORS(app)
@@ -150,7 +142,4 @@ def login_check():
 
 #=================================================================================================================
 if __name__ == '__main__':
-    scheduler = BackgroundScheduler(timezone='Asia/Seoul')
-    scheduler.add_job(jobs, trigger='cron', hour=0, minute=0)
-    scheduler.start()
     app.run()
