@@ -15,24 +15,11 @@ app = Flask(__name__)
 CORS(app)
 
 #Index Page API ============================================================================
-
 @app.route('/add/talmo-him')
 def add_talmo_him():
     index_page = IndexPage()
     index_page.add_talmo_him()
     return "탈모 진행도가 1% 증가했습니다."
-
-@app.route('/get/talmo-him')
-def get_talmo_him_count():
-    index_page = IndexPage()
-    talmo_him_content = f"지환쌤 탈모 진행도 {index_page.get_talmo_him()}%"
-    return talmo_him_content
-
-@app.route('/get/talmo-title')
-def get_talmo_gione_count():
-    index_page = IndexPage()
-    title = f"지환쌤 탈모기원 {index_page.get_talmo_gione()}일차"
-    return title
 
 #User information============================================================================================================
 @app.route('/get/login_url')
