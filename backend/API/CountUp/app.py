@@ -17,3 +17,6 @@ def add_talmo_him():
     index_page = IndexPage()
     index_page.add_talmo_him()
     return "탈모 진행도가 1% 증가했습니다."
+
+if __name__ == '__main__':
+    app.run()
