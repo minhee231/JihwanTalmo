@@ -1,8 +1,14 @@
+import os
+import sys
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, '..', '..'))
+sys.path.append(project_root)
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from backend.API.module.MultiPage import *
-from backend.API.module.CtrlJson import Control_Json
-import backend.API.module.Encryption as Encryption
+from module.MultiPage import *
+from module.CtrlJson import Control_Json
+import module.Encryption as Encryption
 import requests
     
 app = Flask(__name__)
@@ -14,7 +20,6 @@ CORS(app)
 def add_talmo_him():
     index_page = IndexPage()
     index_page.add_talmo_him()
-
     return "탈모 진행도가 1% 증가했습니다."
 
 @app.route('/get/talmo-him')
