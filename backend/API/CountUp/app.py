@@ -19,4 +19,4 @@ def add_talmo_him():
     return "탈모 진행도가 1% 증가했습니다."
 
 if __name__ == '__main__':
-    app.run()
+    app.run(687)
