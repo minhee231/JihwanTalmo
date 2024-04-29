@@ -1,27 +1,22 @@
 import os
 import sys
 current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.abspath(os.path.join(current_dir, '..', '..'))
+project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
 sys.path.append(project_root)
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from module.MultiPage import *
-from module.CtrlJson import Control_Json
-import module.Encryption as Encryption
 import requests
-    
+from backend.module.CtrlJson import Control_Json
+import backend.module.Encryption as Encryption
+
 app = Flask(__name__)
 CORS(app)
 
-#Index Page API ============================================================================
-@app.route('/add/talmo-him')
-def add_talmo_him():
-    index_page = IndexPage()
-    index_page.add_talmo_him()
-    return "탈모 진행도가 1% 증가했습니다."
+key_file_path = "../config/key.json"
+keyfile_obj = Control_Json(key_file_path)
+keyfile_obj.file_load()
 
-#User information============================================================================================================
 @app.route('/get/login_url')
 def login_redirect():
     login_json_obj = Control_Json("./config/key.json")
@@ -59,6 +54,7 @@ def get_access_token():
     token_response_data = token_request.json()
     access_token = token_response_data.get('access_token')
     
+    #토큰 암호화
     return Encryption.encrypt_data(access_token, ENCRYPTION_KEY)
 
 @app.route('/get/user-info')
@@ -87,51 +83,5 @@ def login_check():
     userinfo_response_data = userinfo_request.json()
     return jsonify(userinfo_response_data), 200
 
-# @app.route('/login-check') #참고용 코드
-# def login_check():
-#     auth_code = request.args.get('googletoken')
-#     if not auth_code:
-#         return jsonify({"error": "not token"}), 400
-    
-#     login_json_obj = Control_Json("./config/key.json")
-#     CLIENT_ID = login_json_obj.get_key_data()["google_oauth"]["client_id"]
-#     CLIENT_SECRET = login_json_obj.get_key_data()["google_oauth"]["client_secret"]
-#     REDIRECT_URI = login_json_obj.get_key_data()["google_oauth"]["redirect_uri"]
-
-#     token_request = requests.post(
-#         'https://oauth2.googleapis.com/token',
-#         data={
-#             'code': auth_code,
-#             'client_id': CLIENT_ID,
-#             'client_secret': CLIENT_SECRET,
-#             'redirect_uri': REDIRECT_URI,
-#             'grant_type': 'authorization_code'
-#         }
-#     )
-#     if token_request.status_code != 200:
-#         return jsonify({"error": "Failed to obtain access token"}), token_request.status_code
-    
-#     token_response_data = token_request.json()
-#     access_token = token_response_data.get('access_token')
-#     if not access_token:
-#         return jsonify({"error": "Access token is missing"}), 400
-
-#     userinfo_request = requests.get(
-#         'https://www.googleapis.com/oauth2/v2/userinfo',
-#         headers={'Authorization': f'Bearer {access_token}'}
-#     )
-#     if userinfo_request.status_code != 200:
-#         return jsonify({"error": "Failed to fetch user info"}), userinfo_request.status_code
-    
-#     userinfo_response_data = userinfo_request.json()
-#     userinfo_response_data['access_token'] = Encryption.encrypt_data(access_token)
-#     return jsonify(userinfo_response_data)
-
-#Harvest Hair Page============================================================================================================
-#@app.route('')
-#def 
-
-
-#=================================================================================================================
 if __name__ == '__main__':
-    app.run()
+    app.run(port=429)
