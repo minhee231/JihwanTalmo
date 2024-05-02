@@ -1,0 +1,14 @@
+{
+    "user_id" : "user_id",
+    "user_email" : "ex@exmplemail.com",
+    "login_time" : "2024-05-02-10-39",
+
+    "harvest_hair_page" : {
+        "owned_hair_count" : 0,
+        "total_hair_count" : 0,
+
+        "item" : {
+
+        }
+    }
+}
