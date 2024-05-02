@@ -2,7 +2,7 @@ import { serverConfig } from '../config.js';
 
 function get_talmo_title() {
 
-    fetch(serverConfig.get.talmo_gione_title)
+    fetch(serverConfig.index_page.get.talmo_gione_title)
     .then(response => response.text())
 
     .then(text => {
@@ -13,7 +13,7 @@ function get_talmo_title() {
 };
 
 function get_talmo_him() {
-    fetch(serverConfig.get.talmo_him)
+    fetch(serverConfig.index_page.get.talmo_him)
     .then(response => response.text())
 
     .then(text => {
@@ -24,7 +24,7 @@ function get_talmo_him() {
 };
 
 function add_talmo_him() {
-    fetch(serverConfig.add.talmo_him)
+    fetch(serverConfig.index_page.add.talmo_him)
     .then(response => response.text())
 
     .catch(error => console.error('Error:', error));
