@@ -1,6 +1,7 @@
 {
     "user_id" : "user_id",
     "user_email" : "ex@exmplemail.com",
+    "user_photo" : "",
     "login_time" : "2024-05-02-10-39",
 
     "harvest_hair_page" : {
