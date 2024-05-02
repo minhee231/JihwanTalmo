@@ -12,10 +12,19 @@ app = Flask(__name__)
 CORS(app)
 
 config_file_path = "../config/index/config.json"
+s3_file_path = ""
 config_obj = Control_Json(config_file_path)
 config_obj.file_load()
 
 #Index Page ==============================================================================
+@app.route('/backup')
+def backup():
+    try:
+        config_obj.upload_json(s3_file_path)
+        return "Upload Success"
+    except:
+        return "Upload Error"
+    
 @app.route('/add/talmo-him')
 def add_talmo_him():
     config_obj.json_data['talmo_jinhang'] += 1
@@ -23,7 +32,7 @@ def add_talmo_him():
     return "탈모 진행도가 1% 증가했습니다."
 
 @app.route('/add/talmo-gione') 
-def add_talmo_him():
+def add_talmo_gione():
     #누구나 접근이 가능하니 나중에 보안설정 만들기
     config_obj.json_data['talmo_gione'] += 1
     config_obj.write_json_file()
