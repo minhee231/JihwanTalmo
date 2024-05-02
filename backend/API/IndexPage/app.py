@@ -40,8 +40,6 @@ def add_talmo_gione():
 
 @app.route('/get/talmo-him')
 def get_talmo_him_count():
-    config_obj.json_data['talmo_jinhang'] += 1
-    config_obj.write_json_file()
     talmo_him_content = f"지환쌤 탈모 진행도 {config_obj.json_data['talmo_jinhang']}%"
     return talmo_him_content
 
