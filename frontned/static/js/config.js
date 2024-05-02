@@ -1,32 +1,30 @@
-//const api_url = "https://api.x-coll.com"
-//const web_url = "https://jihwan-talmo.x-coll.com"
-const api_url = "http://localhost:5000"; //개발전용
-const web_url = "http://localhost:3400" //개발전용
+// const web = "https://jihwan-talmo.x-coll.com"
+// const login_api = "https://login.jihwan-talmo.x-coll.com"
+// const index_page_api = "https://indexp.jihwan-talmo.x-coll.com"
+// const user_api = "https://user.jihwan-talmo.x-coll.com"
+
+const web = "http://localhost:3400" //개발전용
+const login_api = "http://localhost:429" //개발전용
+const index_page_api = "http://localhost:687" //개발전용
+const user_api = "http://localhost:538" //개발전용
 
 export const serverConfig = {
     server_url: {
-        web: web_url,
-        api: api_url,
+        web: web,
+        login_api: login_api,
+        index_page_api: index_page_api,
+        user_api: user_api,
     },
 
-    add: {
-        talmo_him: `${api_url}/add/talmo-him`,
-    },
-    
-    get: {
-        talmo_gione_title: `${api_url}/get/talmo-title`,
-        talmo_him: `${api_url}/get/talmo-him`,
+    index_page: {
+        add: {
+            talmo_him: `${index_page_api}/add/talmo-him`
+        },
 
-        login_url : `${api_url}/get/login_url`,
-        access_token: `${api_url}/get/access-token`       
-    },
-
-    login: {
-        request_login_api: `${api_url}/login-callback` //test 나중에 수정하셈
-    },
-
-    check: {
-        login_check: `${api_url}/login-check`
+        get: {
+            talmo_gione_title: `${index_page_api}/get/talmo-title`,
+            talmo_him: `${index_page_api}/get/talmo-title`
+        },
     },
 
 }
