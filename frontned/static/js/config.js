@@ -23,7 +23,8 @@ export const serverConfig = {
 
         get: {
             talmo_gione_title: `${index_page_api}/get/talmo-title`,
-            talmo_him: `${index_page_api}/get/talmo-him`
+            talmo_him: `${index_page_api}/get/talmo-him`,
+            login_url: `${login_api}/get/login_url`,
         },
     },
 
