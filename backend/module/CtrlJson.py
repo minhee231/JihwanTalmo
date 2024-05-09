@@ -12,7 +12,7 @@ class Control_Json:
             self.json_data = json.load(file)
 
     def get_key_data(self):
-        key_path = "./config/key.json"
+        key_path = "../config/key.json"
         with open(key_path, "r", encoding='utf-8') as file:
             data = json.load(file)
 
