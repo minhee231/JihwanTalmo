@@ -28,4 +28,10 @@ export const serverConfig = {
         },
     },
 
+    login_page: {
+        get: {
+            access_token : `${login_api}/get/access-token`,
+        },
+    }
+
 }
