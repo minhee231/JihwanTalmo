@@ -31,7 +31,7 @@ function add_talmo_him() {
 };
 
 function redirect_login_url() {
-    fetch(serverConfig.get.login_url)
+    fetch(serverConfig.index_page.get.login_url)
     .then(response => response.text())
 
     .then(text => {
