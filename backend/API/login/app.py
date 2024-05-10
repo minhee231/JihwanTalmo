@@ -19,10 +19,9 @@ keyfile_obj.file_load()
 
 @app.route('/get/login_url')
 def login_redirect():
-    login_json_obj = Control_Json("./config/key.json")
-    CLIENT_ID = login_json_obj.get_key_data()["google_oauth"]["client_id"]
-    REDIRECT_URI = login_json_obj.get_key_data()["google_oauth"]["redirect_uri"]
-    SCOPE = login_json_obj.get_key_data()["google_oauth"]["scope"]
+    CLIENT_ID = keyfile_obj.get_key_data()["google_oauth"]["client_id"]
+    REDIRECT_URI = keyfile_obj.get_key_data()["google_oauth"]["redirect_uri"]
+    SCOPE = keyfile_obj.get_key_data()["google_oauth"]["scope"]
 
     login_url = f'https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={SCOPE}'
 
@@ -31,11 +30,10 @@ def login_redirect():
 @app.route('/get/access-token')
 def get_access_token():
     auth_code = request.args.get('code')
-    login_json_obj = Control_Json("./config/key.json")
-    CLIENT_ID = login_json_obj.get_key_data()["google_oauth"]["client_id"]
-    CLIENT_SECRET = login_json_obj.get_key_data()["google_oauth"]["client_secret"]
-    REDIRECT_URI = login_json_obj.get_key_data()["google_oauth"]["redirect_uri"]
-    ENCRYPTION_KEY = login_json_obj.get_key_data()["encryption_key"]
+    CLIENT_ID = keyfile_obj.get_key_data()["google_oauth"]["client_id"]
+    CLIENT_SECRET = keyfile_obj.get_key_data()["google_oauth"]["client_secret"]
+    REDIRECT_URI = keyfile_obj.get_key_data()["google_oauth"]["redirect_uri"]
+    ENCRYPTION_KEY = keyfile_obj.get_key_data()["encryption_key"]
 
     token_request = requests.post(
         'https://oauth2.googleapis.com/token',
@@ -64,8 +62,7 @@ def login_check():
         return jsonify({'error': 'No access token provided'}), 400
 
     try:
-        login_json_obj = Control_Json("./config/key.json")
-        ENCRYPTION_KEY = login_json_obj.get_key_data()["encryption_key"]
+        ENCRYPTION_KEY = keyfile_obj.get_key_data()["encryption_key"]
         
         access_token = Encryption.decrypt_data(access_token, ENCRYPTION_KEY)
     except Exception as e:
