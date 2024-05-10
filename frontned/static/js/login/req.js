@@ -22,7 +22,7 @@ function get_access_token() {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
 
-    return fetch(`${serverConfig.get.access_token}?code=${code}`)
+    return fetch(`${serverConfig.login_page.get.access_token}?code=${code}`)
         .then(response => response.text())
         .then(text => {
             return text;
