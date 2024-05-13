@@ -101,7 +101,7 @@ def get_user_info_data():
     
     try:
         user_info_file = Control_Json(file_path)
-        user_info_file.load_json()
+        user_info_file.file_load()
         user_info = user_info_file.json_data
     except:
         user_info = create_user_file(user_info)
