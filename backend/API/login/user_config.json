@@ -1,6 +1,6 @@
 {
     "user_id" : "user_id",
-    "user_email" : "ex@exmplemail.com",
+    "user_emali" : "ex@exmplemali.com",
     "user_photo" : "",
     "login_time" : "2024-05-02-10-39",
 
@@ -9,7 +9,7 @@
         "total_hair_count" : 0,
 
         "item" : {
-
+            
         }
     }
 }
