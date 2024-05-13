@@ -31,7 +31,14 @@ export const serverConfig = {
     login_page: {
         get: {
             access_token : `${login_api}/get/access-token`,
+            user_info : `${login_api}/get/user-info` //test
         },
-    }
+    },
+
+    user: {
+        get: {
+            user_info: `${user_api}/get/user-info`,
+        },
+    },
 
 }

@@ -91,18 +91,21 @@ def test():
     create_user_file(info)
     return "dadasd"
 
-@app.route('/set/user-info')
-def set_user_info():
+@app.route('/get/user-info')
+def get_user_info_data():
     access_token = request.args.get('access_token')
     user_info = get_user_info(access_token)
-
     if 'error' in user_info:
         return jsonify(user_info), user_info.get('status_code', 500)
+    file_path = f"./{user_info['id']}.json"
     
-    if file_exists(f"./{user_info['id']}.json"):
-        return "파일이 이미 존재함"
+    try:
+        user_info_file = Control_Json(file_path)
+        user_info_file.load_json()
+        user_info = user_info_file.json_data
+    except:
+        user_info = create_user_file(user_info)
 
-    create_user_file(user_info)
     return jsonify(user_info), 200
 
 if __name__ == '__main__':
