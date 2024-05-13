@@ -3,6 +3,10 @@ html, body {
     padding: 0;
     height: 100%;
     overflow: hidden;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
 }
 
 nav {
@@ -30,6 +34,14 @@ aside {
     background-color: #616161;
 }
 
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
 /* .box {
     background-color: #757575;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -40,6 +52,13 @@ aside {
     margin: 12px;
     border: none;
 } */
+
+.no_drag {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
 
 .box_button {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
