@@ -77,6 +77,11 @@ def get_user_info(access_token):
     userinfo_response_data = userinfo_request.json()
     return userinfo_response_data
 
+def get_user_id(access_token):
+    user_info = get_user_info(access_token)
+    print(user_info)
+    return user_info["id"]
+
 def file_exists(file_name):
     file_path = os.path.join(".", file_name)  # 파일이 현재 디렉토리에 있는 경우
     return os.path.exists(file_path)
@@ -90,6 +95,26 @@ def test():
     }
     create_user_file(info)
     return "dadasd"
+
+
+# add hair 기능 만든거 커밋하고 이제 수집된 머리카락의 수 갱신되게 하셈(jsonify)로 보내면 될것 같고
+# 그 js파일에다 리퀘스트 보낼 때 반환 status에 따라 예외 처리 추가
+
+@app.route('/add/hair')
+def add_user_hair():
+    access_token = request.args.get('access_token')
+    try:
+        user_id = get_user_id(access_token) 
+    except:
+        return jsonify({'error': 'get_user_id error'}), 500
+    user_info_file_path = f"./{user_id}.json"
+    user_obj = Control_Json(user_info_file_path)
+    user_obj.file_load()
+    
+    user_obj.json_data["harvest_hair_page"]["owned_hair_count"] = user_obj.json_data["harvest_hair_page"]["owned_hair_count"] + 1
+    user_obj.write_json_file()
+    
+    return str(user_obj.json_data["harvest_hair_page"]["owned_hair_count"])
 
 @app.route('/get/user-info')
 def get_user_info_data():

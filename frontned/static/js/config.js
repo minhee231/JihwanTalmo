@@ -39,6 +39,10 @@ export const serverConfig = {
         get: {
             user_info: `${user_api}/get/user-info`,
         },
+
+        add: {
+            owned_hair: `${user_api}/add/hair`,
+        }
     },
 
 }
