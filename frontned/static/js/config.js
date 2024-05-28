@@ -4,9 +4,9 @@
 // const user_api = "https://user.jihwan-talmo.x-coll.com"
 
 const web = "http://localhost:3400" //개발전용
-const login_api = "http://localhost:429" //개발전용
-const index_page_api = "http://localhost:687" //개발전용
-const user_api = "http://localhost:538" //개발전용
+const login_api = "http://43.203.18.191:429" //요금 절감
+const index_page_api = "http://43.203.18.191:687" //요금 절감
+const user_api = "http://43.203.18.191:538" //요금 절감
 
 export const serverConfig = {
     server_url: {
