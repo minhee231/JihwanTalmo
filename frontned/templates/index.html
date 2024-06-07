@@ -6,6 +6,7 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href=" {{ url_for('static', filename='css/index/main.css') }}">
     <script src="{{  url_for('static', filename = 'js/index/jihwan_talking.js') }}" defer></script>
+    <script src="{{  url_for('static', filename = 'js/index/change_bg.js') }}" defer></script>
     <script type="module" src="{{ url_for('static', filename = 'js/index/req.js')}}" defer></script>
     <title>지환쌤 탈모 기원</title>
 </head>
@@ -36,5 +37,10 @@
 
     <img id="talmo_bim" src="{{ url_for('static', filename='images/index/talmobim.png')}}">
     <img id="jihwanT_guitar" src="{{ url_for('static', filename='images/index/playing_guitar.gif')}}">
+    <!-- <img id="SingingJiHwanT" src="{{ url_for('static', filename='images/index/SingingJiHwanT.gif')}}"> -->
+
+    <div id="change_bg">
+        <button class="talmo_button" id="change_bg_button">배경 바꾸기</button>
+    </div>
 </body>
 </html>
