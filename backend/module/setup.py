@@ -1,9 +1,11 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name="JihwanTModule",
     version="0.1",
-    packages=find_packages(),
+    packages=["backend.module"],
     install_requires=[
+        "CtrlJson.py",
+        "Encryption.py"
     ],
 )
