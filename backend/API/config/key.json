@@ -15,5 +15,6 @@
         "scope" : "scope"
     },
 
-    "encryption_key" : "16byte"
+    "encryption_key" : "16byte",
+    "lambda_auth_key" : "key"
 }
