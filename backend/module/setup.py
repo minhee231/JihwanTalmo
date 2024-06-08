@@ -1,7 +1,8 @@
-from setuptools import setup
+from setuptools import setup,find_packages
 
 setup(
     name="JihwanTModule",
     version="0.1",
-    py_modules=["Control_Json.py"],
+    packages=find_packages(),
+    py_modules=["Control_Json"],
 )
