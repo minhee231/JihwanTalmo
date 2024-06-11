@@ -6,7 +6,11 @@ sys.path.append(project_root)
 
 from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
-from backend.module.CtrlJson import Control_Json
+
+try:
+    from backend.module.CtrlJson import Control_Json
+except:
+    from CtrlJson import Control_Json
 
 app = Flask(__name__)
 CORS(app)
