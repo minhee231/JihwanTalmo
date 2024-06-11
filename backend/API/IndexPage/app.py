@@ -4,7 +4,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
 sys.path.append(project_root)
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from backend.module.CtrlJson import Control_Json
 
@@ -33,10 +33,14 @@ def add_talmo_him():
 
 @app.route('/add/talmo-gione') 
 def add_talmo_gione():
-    #누구나 접근이 가능하니 나중에 보안설정 만들기
-    config_obj.json_data['talmo_gione'] += 1
-    config_obj.write_json_file()
-    return "날짜가 증가했습니다."
+    auth_key = request.args.get('auth_key')
+    LAMBDA_AUTH = config_obj.get_key_data()["lambda_auth_key"]
+    if auth_key == LAMBDA_AUTH:
+        config_obj.json_data['talmo_gione'] += 1
+        config_obj.write_json_file()
+        return make_response('', 200)
+    
+    return make_response('', 200)
 
 @app.route('/get/talmo-him')
 def get_talmo_him_count():
