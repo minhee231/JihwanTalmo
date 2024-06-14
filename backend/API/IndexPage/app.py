@@ -1,21 +1,10 @@
-import os
-import sys
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
-sys.path.append(project_root)
-
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, make_response
 from flask_cors import CORS
-
-try:
-    from backend.module.CtrlJson import Control_Json
-except:
-    from CtrlJson import Control_Json
+from CtrlJson import Control_Json
 
 app = Flask(__name__)
 CORS(app)
-
-config_file_path = "../config/index/config.json"
+config_file_path = "./config.json"
 s3_file_path = ""
 config_obj = Control_Json(config_file_path)
 config_obj.file_load()
