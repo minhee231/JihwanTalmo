@@ -1,25 +1,17 @@
 FROM python:3.11-alpine
 
-# 필요한 패키지 설치
-RUN apk add --no-cache git
-
 WORKDIR /app
 
-# Git 저장소 설정
-RUN git init \
-    && git remote add origin https://github.com/minhee231/JihwanTalmo.git \
-    && git config core.sparseCheckout true \
-    && echo "backend/module/*" >> .git/info/sparse-checkout \
-    && git pull origin main \
-    && mv backend/module/* . \
-    && rm -rf backend .git
+COPY . /app
 
-# 필요한 Python 패키지 설치
-COPY requirements.txt .
+#모듈 불러오기
+RUN apk add --no-cache git && \
+    git clone https://github.com/minhee231/JihwanTalmo.git && \
+    cp JihwanTalmo/backend/module/CtrlJson.py /app/CtrlJson.py
+
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-# 환경 변수 설정
-ENV FLASK_RUN_PORT=5000
+#포트 지정임
+ENV FLASK_RUN_PORT=687
 
-# 컨테이너 실행 시 Flask 애플리케이션 실행
 CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
