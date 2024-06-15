@@ -4,6 +4,11 @@ WORKDIR /app
 
 COPY . /app
 
+RUN apk add --no-cache git && \
+    git clone https://github.com/minhee231/JihwanTalmo.git && \
+    cp JihwanTalmo/backend/module/CtrlJson.py /app/CtrlJson.py && \
+    cp JihwanTalmo/backend/module/Encryption.py /app/Encryption.py
+
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 ENV FLASK_RUN_PORT=429
