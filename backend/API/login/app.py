@@ -1,19 +1,13 @@
-import os
-import sys
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
-sys.path.append(project_root)
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
-from backend.module.CtrlJson import Control_Json
-import backend.module.Encryption as Encryption
+from CtrlJson import Control_Json
+import Encryption
 
 app = Flask(__name__)
 CORS(app)
 
-key_file_path = "../config/key.json"
+key_file_path = "./key.json"
 keyfile_obj = Control_Json(key_file_path)
 keyfile_obj.file_load()
 
